@@ -44,20 +44,21 @@ window.onload = function () {
   init();
 
 
-  //ループ呼び出し
+  //ループ
   (function () {
     if (start) {//ゲーム中
       //プレイヤー操作
       mainKeydown();//キー検知
       playerMove();//プレイヤー移動
+
       //敵
       enemyMove();//敵移動
+
       //あたり判定
       if (playerCollider()) {
         end();
       }
       time++;
-
     }
 
     //fps管理
@@ -132,20 +133,20 @@ function playerCreate(url, name, option) {//ウィンドウ作成
 
 //---キー入力関係---
 //キーを押したとき
-document.onkeydown = function(ev) {
+document.onkeydown = function (ev) {
   if (!ev) ev = window.event;
   inputKeys[ev.keyCode] = true;
 };
 
 //キーを離したとき
-document.onkeyup = function(ev) {
+document.onkeyup = function (ev) {
   if (!ev) ev = window.event;
   inputKeys[ev.keyCode] = false;
 };
 
 //キーが押されているか
-function keyIsDown(key_code) {
-  if (inputKeys[key_code]) return true;
+function keyIsDown(keyCode) {
+  if (inputKeys[keyCode]) return true;
   return false;
 }
 
@@ -231,7 +232,7 @@ function enemyMove() {
   }
   //画面サイズ大きくする
   enemies[Math.floor(Math.random() * enemies.length)].handle.resizeBy(1, 0);
-  enemies[Math.floor(Math.random() * enemies.length)].handle.resizeBy(0, 1);  
+  enemies[Math.floor(Math.random() * enemies.length)].handle.resizeBy(0, 1);
 }
 
 ///////////あたり判定
